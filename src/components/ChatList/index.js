@@ -7,5 +7,5 @@ export const ChatList = ({ chats }) => {
         <Chat title={chat.title} code={chat.code} key={chat.id} />
     ), []);
 
-    return chats.map (renderChat);
+    return chats.map(renderChat);
 }

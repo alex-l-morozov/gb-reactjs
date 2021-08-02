@@ -4,6 +4,7 @@ import {ChatList} from "./components/ChatList";
 import {MessageList}  from './components/MessageList';
 import {MessageForm}  from './components/MessageForm';
 import { AUTHORS } from "./constants/authors";
+import { CHATS } from "./constants/chats";
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
@@ -16,14 +17,6 @@ function App() {
         },
         [messages]
     );
-    const chats = [
-        {title: "Auto", code: "auto", id: 1},
-        {title: "Books", code: "books", id: 2},
-        {title: "Phone", code: "phone", id: 3},
-        {title: "Films", code: "films", id: 4},
-        {title: "Music", code: "music", id: 5},
-        {title: "Other", code: "other", id: 6},
-    ];
 
     useEffect(() => {
         if (
@@ -52,7 +45,7 @@ function App() {
                 <Grid item xs={3}>
                     <Paper>
                         <List>
-                            <ChatList chats={chats} />
+                            <ChatList chats={CHATS} />
                         </List>
                     </Paper>
                 </Grid>

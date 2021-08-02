@@ -7,5 +7,5 @@ export const MessageList = ({ messages }) => {
         <Message text={message.text} author={message.author} key={message.id} />
     ), []);
 
-    return messages.map (renderMessage);
+    return messages.map(renderMessage);
 }

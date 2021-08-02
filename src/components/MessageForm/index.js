@@ -8,8 +8,6 @@ export const MessageForm = ({ onSendMessage }) => {
     const [value, setValue] = useState('');
     const inputRef = useRef(null);
 
-    console.log(inputRef);
-
     const handleChange = (e) => {
         setValue(e.target.value);
     }
