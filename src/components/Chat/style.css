@@ -1,3 +1,6 @@
 .message span {
     font-weight: bold;
 }
+button.del {
+    margin-left: 60px;
+}

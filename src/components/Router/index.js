@@ -18,7 +18,7 @@ export const Router = () => {
                 <Route path='/' exact>
                     <h1>Welcome</h1>
                 </Route>
-                <Route path='/home/:chatCode?'>
+                <Route path='/home/:chatId?'>
                     <Home />
                 </Route>
                 <Route path='/profile'>
