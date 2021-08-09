@@ -1,32 +1,31 @@
-import React from 'react';
-//import {store} from "../../store";
-import {PROFILE_TOGGLE_SHOW} from "../../store/actionTypes";
-import {useSelector, useDispatch} from "react-redux";
+import React, { useState } from "react";
+import { useSelector, useDispatch, connect } from "react-redux";
+import { changeName } from "../../store/profile/actions";
+import { selectName } from "../../store/profile/selectors";
 
 function Profile() {
-    //const profileState = store.getState();
-    const profileState = useSelector(state => state);
+    const [value, setValue] = useState("");
+    const name = useSelector(selectName);
     const dispatch = useDispatch();
 
-    //console.log(profileState);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(changeName(value));
+        setValue("");
+    };
 
-    const toggleShow = () => {
-        // store.dispatch({
-        //     type: PROFILE_TOGGLE_SHOW
-        // });
-        dispatch({
-            type: PROFILE_TOGGLE_SHOW
-        });
-    }
+    const handleChange = (e) => {
+        setValue(e.target.value);
+    };
 
     return (
-        <div>
-            <h2>
-                PROFILE
-            </h2>
-            <input type="checkbox" onClick={toggleShow} /> Показать / спрятать Имя пользователя
-            {profileState.show && <div>Имя: Александр</div>}
-        </div>
+        <>
+            <h2>THIS IS PROFILE OF {name}</h2>
+            <form action="" onSubmit={handleSubmit}>
+                <input value={value} onChange={handleChange} />
+                <button onClick={handleSubmit}>Save name</button>
+            </form>
+        </>
     );
 }
 

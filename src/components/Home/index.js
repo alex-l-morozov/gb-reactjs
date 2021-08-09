@@ -1,76 +1,37 @@
 import './style.css';
-import {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect} from "react";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { sendMessage } from "../../store/chats/actions";
 import {ChatList} from "../ChatList";
+import {AddChat} from "../Chat/AddChat";
 import {MessageList}  from '../MessageList';
 import {MessageForm}  from '../MessageForm';
 import { AUTHORS } from "../../constants/authors";
-import { CHATS } from "../../constants/chats";
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
-
-const initialChats = {
-    auto: {
-        code: "auto",
-        name: "Auto",
-        messages: [
-            { text: "Welcome, Chat Auto", author: AUTHORS.robot, id: Date.now() }
-        ],
-    },
-    books: {
-        code: "books",
-        name: "Books",
-        messages: [
-            { text: "Welcome, Chat Books", author: AUTHORS.robot, id: Date.now() },
-        ],
-    },
-    phone: {
-        code: "phone",
-        name: "Phone",
-        messages: []
-    },
-    other: {
-        code: "other",
-        name: "Other",
-        messages: []
-    },
-    music: {
-        code: "music",
-        name: "Music",
-        messages: []
-    },
-    films: {
-        code: "films",
-        name: "Films",
-        messages: []
-    },
-};
+import ListItem from "@material-ui/core/ListItem";
+import {selectChats} from "../../store/chats/selectors";
 
 function Home() {
-    const { chatCode } = useParams();
+    const { chatId } = useParams();
 
-    const [chats, setChats] = useState(initialChats);
+    const chats = useSelector(selectChats);
+    const dispatch = useDispatch();
 
     const handleSendMessage = useCallback(
         (newMessage) => {
-            // setMessages([...messages, newMessage]);
-            setChats({
-                ...chats,
-                [chatCode]: {
-                    ...chats[chatCode],
-                    messages: [...chats[chatCode].messages, newMessage],
-                },
-            });
+            dispatch(sendMessage(chatId, newMessage));
         },
-        [chats, chatCode]
+        [chatId]
     );
 
     useEffect(() => {
         if (
-            !chatCode ||
-            !chats[chatCode]?.messages.length ||
-            chats[chatCode].messages[chats[chatCode].messages.length - 1].author ===
+            !chatId ||
+            !chats[chatId]?.messages.length ||
+            chats[chatId].messages[chats[chatId].messages.length - 1].author ===
             AUTHORS.robot
         ) {
             return;
@@ -95,14 +56,17 @@ function Home() {
                 <Grid item xs={3}>
                     <Paper>
                         <List>
-                            <ChatList chats={CHATS} />
+                            <ChatList chats={chats} />
+                            <ListItem>
+                                <AddChat/>
+                            </ListItem>
                         </List>
                     </Paper>
                 </Grid>
                 <Grid item xs={9}>
-                    {!!chatCode && !!initialChats[chatCode] && (
+                    {!!chatId && !!chats[chatId] && (
                     <Paper>
-                        <MessageList messages={chats[chatCode].messages}></MessageList>
+                        <MessageList messages={chats[chatId].messages}></MessageList>
                         <MessageForm onSendMessage={handleSendMessage} />
                     </Paper>
                     )}
