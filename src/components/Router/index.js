@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter, Link, Switch, Route} from "react-router-dom";
 import Home from '../Home';
 import Profile from '../Profile';
+import {News} from "../News";
 
 export const Router = () => {
     return (
@@ -13,6 +14,9 @@ export const Router = () => {
                 <li>
                     <Link to='/profile'>Profile</Link>
                 </li>
+                <li>
+                    <Link to='/news'>News</Link>
+                </li>
             </ul>
             <Switch>
                 <Route path='/' exact>
@@ -23,6 +27,9 @@ export const Router = () => {
                 </Route>
                 <Route path='/profile'>
                     <Profile />
+                </Route>
+                <Route path="/news">
+                    <News />
                 </Route>
                 <Route path="*">
                     <h1>404</h1>
