@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage"
 import { profileReducer } from "./profile/reducer";
 import { chatsReducer } from "./chats/reducer";
+import { articlesReducer } from "./articles/reducer";
 
 const persistConfig = {
     key: 'My-messenger',
@@ -12,7 +13,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     chats: chatsReducer,
-    profile: profileReducer
+    profile: profileReducer,
+    articles: articlesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
