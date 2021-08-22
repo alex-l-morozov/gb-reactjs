@@ -1,5 +1,5 @@
-import { REQUEST_PENDING, REQUEST_ERROR, REQUEST_SUCCESS } from "./actionTypes";
 import { REQUEST_STATUS } from "../../constants/articles";
+import { REQUEST_PENDING, REQUEST_SUCCESS, REQUEST_ERROR } from "./actionTypes";
 
 const initialState = {
     data: [],

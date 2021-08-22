@@ -1,12 +1,26 @@
-import React, {useCallback} from 'react';
-import {Chat} from '../Chat';
-import ListItem from "@material-ui/core/ListItem";
+import React, { useContext } from "react";
+import { List, ListItem } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { AddChat } from "../Chat/AddChat";
+import { Chat } from "../Chat";
 
-export const ChatList = ({ chats }) => {
+export const ChatList = ({ chats, onDeleteChat, onAddChat }) => {
+  return (
+    <>
+      <List>
+        {Object.values(chats).map((c) => (
+          <Chat
+            name={c.name}
+            key={c.id}
+            id={c.id}
+            onDelete={onDeleteChat}
+          />
+        ))}
+        <ListItem>
+          <AddChat onAddChat={onAddChat} />
+        </ListItem>
+      </List>
+    </>
+  );
+};
 
-    const renderChat = useCallback((chat) => (
-        <Chat title={chat.name} id={chat.id} key={chat.id} />
-    ), []);
-
-    return Object.values(chats).map(renderChat);
-}

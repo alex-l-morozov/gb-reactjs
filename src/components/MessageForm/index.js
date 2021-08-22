@@ -1,8 +1,7 @@
 import './style.css';
 import {TextField, Button} from "@material-ui/core";
-// import Icon from '@material-ui/core/Icon';
 import React, {useState, useRef, useEffect} from 'react';
-import { AUTHORS } from '../../constants/authors';
+// import { AUTHORS } from '../../constants/authors';
 
 export const MessageForm = ({ onSendMessage }) => {
     const [value, setValue] = useState('');

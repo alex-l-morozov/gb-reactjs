@@ -1,11 +1,17 @@
-import React, {useCallback} from 'react';
-import {Message} from '../Message';
+import React, { useCallback } from "react";
+import { Message } from "../Message";
 
 export const MessageList = ({ messages }) => {
+  const renderMessage = useCallback(
+    (mess) => (
+      <Message
+        text={mess.text}
+        author={mess.author}
+        key={mess.id}
+      />
+    ),
+    []
+  );
 
-    const renderMessage = useCallback((message) => (
-        <Message text={message.text} author={message.author} key={message.id} />
-    ), []);
-
-    return messages.map(renderMessage);
-}
+  return messages.map(renderMessage);
+};

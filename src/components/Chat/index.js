@@ -1,21 +1,20 @@
-import './style.css';
-// import React, {useState} from "react";
-import {Link} from "react-router-dom"
-import ListItem from '@material-ui/core/ListItem';
-import {delChat} from "../../store/chats/actions";
-import {useDispatch} from "react-redux";
-// import ListItemText from '@material-ui/core/ListItemText';
+import React from "react";
+import { ListItem } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteChatWithFB } from "../../store/chats/actions";
 
-export const Chat = ({ title, id }) => {
+export const Chat = ({ id, name, onDelete }) => {
     const dispatch = useDispatch();
-    const handleDelete = (e) => {
-        dispatch(delChat(e.target.value));
+
+    const handleDelete = () => {
+        dispatch(deleteChatWithFB(id));
     };
 
     return (
         <ListItem>
-            <Link to={`/home/${id}`}> {title}</Link>
-            <button className="del" value={id} onClick={handleDelete}>Delete</button>
+            <Link to={`/home/${id}`}>{name}</Link>
+            <div onClick={handleDelete}>DELETE</div>
         </ListItem>
-    )
+    );
 };
