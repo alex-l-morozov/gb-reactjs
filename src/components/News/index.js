@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectArticlesLoading, selectArticlesError, selectArticles } from "../../store/articles/selectors";
 import { getArticles } from "../../store/articles/actions";
-
+import {Button} from "../Button";
 import './style.css';
 
 export const News = () => {
@@ -28,7 +28,7 @@ export const News = () => {
         return (
             <>
                 <h3>Request error</h3>
-                <button onClick={requestArticles}>TRY AGAIN</button>
+                <Button onClick={requestArticles}>TRY AGAIN</Button>
             </>
         );
     }
