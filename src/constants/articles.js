@@ -1,4 +1,4 @@
-export const API_URL = "https://api.spaceflightnewsapi.net/v3/articles";
+export const API_URL = "https://api.spaceflightnewsapi.net/v3/articles2";
 
 export const REQUEST_STATUS = {
     IDLE: 0,
